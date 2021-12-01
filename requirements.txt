@@ -1,2 +1,15 @@
 aiogram<3.0
 environs~=8.0.0
+pip~=21.2.4
+wheel~=0.37.0
+cryptography~=35.0.0
+setuptools~=58.0.4
+httpx~=0.20.0
+tinvest~=3.0.5
+numpy~=1.21.2
+holidays~=0.11.3.1
+python-dotenv
+asyncpg~=0.25.0
+aiogram
+lxml~=4.6.4
+yfinance~=0.1.66

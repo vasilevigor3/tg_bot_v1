@@ -1,0 +1,39 @@
+#version: '3.1'
+#
+#services:
+#  cron:
+#    container_name: cron
+#    build:
+#      context: .
+#    #    command: python app.py
+#    restart: always
+
+version: "3.1"
+services:
+    cron:
+      container_name: cron
+      build:
+        context: .
+      #    command: python app.py
+      restart: always
+
+    tasker:
+        image: strm/tasker
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+        environment:
+            configuration: |
+                logging:
+                    level:
+                        ROOT: WARN
+                        org.springframework.web: WARN
+                        sh.strm: DEBUG
+                schedule:
+                    - every: minute
+                      task: helloFromPython
+                tasks:
+                    docker:
+                        - name: helloFromPython
+                          image: python:3-slim
+                          script:
+                              - python3 yahoo.py
