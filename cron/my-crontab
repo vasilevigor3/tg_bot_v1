@@ -1,1 +1,1 @@
-05 21 * * * python3 /etc/tt.py > /var/log/my-crontab.log 2>&1
+05 21 * * * python3 /etc/update_figi_job.py > /var/log/my-crontab.log 2>&1

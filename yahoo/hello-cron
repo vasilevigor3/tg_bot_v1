@@ -1,5 +1,0 @@
-* * * * * echo "Hello world" >> /var/log/cron.log 2>&1
-* * * * * bash -c "/usr/local/bin/python3 /home/code/test.py >>/home/code/test.log 2>/home/code/test.log"
-
-
-надо установить env на python в dockerfile

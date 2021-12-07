@@ -1,23 +1,25 @@
 version: '3.1'
 services:
   db:
-    container_name: data-base
-    image: postgres
+    container_name: mysql_db
+    image: mysql:5.6
     restart: always
-    environment:
-      POSTGRES_PASSWORD: example
-    ports:
-      - "6543:5432"
+    command: --init-file /db/db.sql
+    hostname: 127.0.99.3
+    volumes:
+      - ./db/db.sql:/db/db.sql
     env_file:
-      - ".env"
-    network_mode: "host"
+      - .env
+    ports:
+      - 3308:3306
 
   adminer:
     container_name: adminer
     image: adminer
     restart: always
+    hostname: 127.0.0.4
     ports:
-      - 8080:8080
+      - "8082:8080"
 
   tgbot:
     container_name: bot
@@ -25,12 +27,10 @@ services:
       context: .
     command: python app.py
     restart: always
-    network_mode: "host"
     env_file:
       - ".env"
 
   db_cron_update:
-    network_mode: "host"
     container_name: db_cron_update
     build:
       context: /cron
